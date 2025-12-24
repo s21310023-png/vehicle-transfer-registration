@@ -24,7 +24,8 @@
   "include": [
     "server.ts",
     "data/**/*.ts",
-    "pdf/**/*.ts",
+    "pdf/fillTemplate.ts",
+    "pdf/convertToImage.ts",
     "ocr/**/*.ts",
     "types.ts"
   ],
