@@ -1,0 +1,24 @@
+node_modules/
+dist/
+.env
+*.log
+input/*.pdf
+output/*.pdf
+temp/
+
+# Screenshots (not part of the app)
+Screenshot*.png
+*.png
+
+# OS files
+desktop.ini
+.DS_Store
+
+# Python files (not needed for this app)
+*.py
+__pycache__/
+*.pyc
+
+# IDE
+.vscode/
+.idea/

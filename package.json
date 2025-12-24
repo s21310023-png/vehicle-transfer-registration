@@ -1,0 +1,54 @@
+{
+  "name": "vehicle-transfer-registration-system",
+  "version": "1.0.0",
+  "description": "陸運局移転登録申請書自動生成システム",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc --project tsconfig.server.json && vite build",
+    "start": "node dist/server.js",
+    "dev": "ts-node index.ts",
+    "watch": "tsc --watch",
+    "web": "vite",
+    "web:dev": "vite --host",
+    "server": "ts-node --project tsconfig.server.json server.ts",
+    "dev:all": "concurrently \"npm run server\" \"npm run web\"",
+    "grid": "ts-node tools/coordinate-finder.ts",
+    "build:server": "tsc --project tsconfig.server.json",
+    "build:web": "vite build"
+  },
+  "keywords": [
+    "pdf",
+    "ocr",
+    "vehicle",
+    "registration"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@pdf-lib/fontkit": "^1.0.0",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/multer": "^2.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^5.2.1",
+    "multer": "^2.0.2",
+    "openai": "^4.20.1",
+    "pdf-lib": "^1.17.1",
+    "pdf-poppler": "^0.2.1",
+    "pdf-to-img": "^5.0.0",
+    "sharp": "^0.32.6"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.2",
+    "concurrently": "^9.2.1",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3",
+    "vite": "^7.3.0"
+  }
+}

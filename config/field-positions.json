@@ -1,0 +1,186 @@
+{
+  "description": "移転登録申請書のフィールド座標設定",
+  "page_info": {
+    "width": 595,
+    "height": 842,
+    "rotation": 90,
+    "note": "A4サイズ、90度回転。座標は左下が原点(0,0)。テキストは90度回転して縦書き。"
+  },
+  "fields": {
+    "old_owner_name": {
+      "x": 205,
+      "y": 95,
+      "fontSize": 12,
+      "spacing": 30,
+      "label": "旧所有者 氏名"
+    },
+    "old_owner_address": {
+      "x": 515,
+      "y": 370,
+      "fontSize": 10,
+      "spacing": 14,
+      "label": "旧所有者 住所"
+    },
+    "old_owner_address_code": {
+      "x": 240,
+      "y": 90,
+      "fontSize": 13,
+      "spacing": 17,
+      "label": "旧所有者 住所コード"
+    },
+    "old_owner_chome": {
+      "x": 240,
+      "y": 320,
+      "fontSize": 13,
+      "spacing": 17,
+      "label": "旧所有者 丁目"
+    },
+    "old_owner_banchi": {
+      "x": 240,
+      "y": 347,
+      "fontSize": 13,
+      "spacing": 17,
+      "label": "旧所有者 番地"
+    },
+    "new_owner_name": {
+      "x": 300,
+      "y": 95,
+      "fontSize": 12,
+      "spacing": 31,
+      "label": "新所有者 氏名"
+    },
+    "new_owner_address": {
+      "x": 530,
+      "y": 80,
+      "fontSize": 10,
+      "spacing": 14,
+      "label": "新所有者 住所"
+    },
+    "new_owner_address_code": {
+      "x": 340,
+      "y": 90,
+      "fontSize": 13,
+      "spacing": 17,
+      "label": "新所有者 住所コード"
+    },
+    "new_owner_chome": {
+      "x": 340,
+      "y": 320,
+      "fontSize": 13,
+      "spacing": 17,
+      "label": "新所有者 丁目"
+    },
+    "new_owner_banchi": {
+      "x": 340,
+      "y": 347,
+      "fontSize": 13,
+      "spacing": 17,
+      "label": "新所有者 番地"
+    },
+    "vehicle_number_region": {
+      "x": 150,
+      "y": 30,
+      "fontSize": 24,
+      "spacing": 33,
+      "label": "車両番号 地名"
+    },
+    "vehicle_number_class": {
+      "x": 150,
+      "y": 165,
+      "fontSize": 13,
+      "spacing": 17,
+      "label": "車両番号 分類番号"
+    },
+    "vehicle_number_kana": {
+      "x": 150,
+      "y": 230,
+      "fontSize": 13,
+      "spacing": 17,
+      "label": "車両番号 かな"
+    },
+    "vehicle_number_digits": {
+      "x": 150,
+      "y": 265,
+      "fontSize": 13,
+      "spacing": 17,
+      "label": "車両番号 一連番号"
+    },
+    "chassis_number": {
+      "x": 150,
+      "y": 348,
+      "fontSize": 13,
+      "spacing": 17,
+      "label": "車台番号"
+    },
+    "new_owner_name_sub": {
+      "x": 518,
+      "y": 130,
+      "fontSize": 8,
+      "spacing": 12,
+      "label": "新所有者名（車検証から）"
+    },
+    "old_owner_name_sub": {
+      "x": 498,
+      "y": 370,
+      "fontSize": 8,
+      "spacing": 12,
+      "label": "旧所有者名（印鑑証明書から）"
+    }
+  },
+  "transfer_static_fields": {
+    "checkmark": {
+      "x": 31,
+      "y": 180,
+      "text": "✓",
+      "fontSize": 12,
+      "label": "レ点（移転登録）"
+    },
+    "number_3": {
+      "x": 58,
+      "y": 142,
+      "text": "３",
+      "fontSize": 12,
+      "label": "番号3（移転登録）"
+    },
+    "number_1": {
+      "x": 335,
+      "y": 48,
+      "text": "1",
+      "fontSize": 12,
+      "label": "チェック欄1（移転登録）"
+    },
+    "sale_purchase": {
+      "x": 550,
+      "y": 660,
+      "text": "売買",
+      "fontSize": 10,
+      "spacing": 14,
+      "label": "登録の原因（売買）"
+    },
+    "application_year": {
+      "x": 550,
+      "y": 740,
+      "text": "AUTO_YEAR",
+      "fontSize": 10,
+      "spacing": 14,
+      "label": "申請日（年）"
+    },
+    "application_month": {
+      "x": 550,
+      "y": 770,
+      "text": "AUTO_MONTH",
+      "fontSize": 10,
+      "spacing": 14,
+      "label": "申請日（月）"
+    },
+    "application_day": {
+      "x": 550,
+      "y": 790,
+      "text": "AUTO_DAY",
+      "fontSize": 10,
+      "spacing": 14,
+      "label": "申請日（日）"
+    }
+  },
+  "instructions": "座標を調整するには、このファイルのx, y値を変更してください。PDFの座標は左下が原点(0,0)、テキストは90度回転で縦書きです。"
+}

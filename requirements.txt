@@ -1,0 +1,30 @@
+# Shopify注文メール自動送り状作成システム
+# Python 3.8以上が必要です
+
+# メール処理
+imapclient==2.3.1
+email-validator==2.1.0
+
+# メール解析
+beautifulsoup4==4.12.3
+lxml==5.1.0
+
+# 環境変数管理
+python-dotenv==1.0.0
+
+# HTTPリクエスト
+requests==2.31.0
+
+# 日付処理
+python-dateutil==2.8.2
+
+# ログ管理
+loguru==0.7.2
+
+# PDF生成（送り状用）
+reportlab==4.0.9
+Pillow==10.2.0
+
+# データベース（処理済みメールの追跡用）
+# sqlite3は標準ライブラリのため、追加のインストールは不要です
+
