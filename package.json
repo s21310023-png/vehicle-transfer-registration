@@ -4,7 +4,7 @@
   "description": "陸運局移転登録申請書自動生成システム",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc --project tsconfig.server.json && vite build",
+    "build": "vite build && tsc --project tsconfig.server.json",
     "start": "node dist/server.js",
     "dev": "ts-node index.ts",
     "watch": "tsc --watch",
