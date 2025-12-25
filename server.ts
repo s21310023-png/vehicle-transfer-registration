@@ -16,7 +16,7 @@ import { integrateOCRResults } from './data/integrate';
 import { InkanOCRResult, ShakenOCRResult } from './types';
 
 // 環境変数を最初に読み込む
-dotenv.config({ path: path.join(__dirname, '.env') });
+dotenv.config({ path: path.join(process.cwd(), '.env') });
 
 const app = express();
 const PORT = process.env.PORT || 3000;

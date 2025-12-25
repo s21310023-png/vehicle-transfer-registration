@@ -143,8 +143,8 @@
       "label": "番号3（移転登録）"
     },
     "number_1": {
-      "x": 335,
-      "y": 48,
+      "x": 340,
+      "y": 50,
       "text": "1",
       "fontSize": 12,
       "label": "チェック欄1（移転登録）"
@@ -170,7 +170,7 @@
       "y": 770,
       "text": "AUTO_MONTH",
       "fontSize": 10,
-      "spacing": 14,
+      "spacing": 10,
       "label": "申請日（月）"
     },
     "application_day": {
@@ -178,7 +178,7 @@
       "y": 790,
       "text": "AUTO_DAY",
       "fontSize": 10,
-      "spacing": 14,
+      "spacing": 10,
       "label": "申請日（日）"
     }
   },
