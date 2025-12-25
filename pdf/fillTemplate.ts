@@ -9,7 +9,7 @@ import * as path from 'path';
 import { TransferData } from '../types';
 
 // 申請種類の型定義
-type ApplicationType = 'transfer' | 'new_registration';
+type ApplicationType = 'transfer' | 'new_registration' | 'temporary_cancellation' | 'export_cancellation' | 'permanent_cancellation';
 
 // フィールド座標の設定（spacing対応）
 interface FieldPosition {
@@ -52,6 +52,15 @@ interface FieldPositionsConfig {
   new_registration_static_fields?: {
     [key: string]: StaticField;
   };
+  temporary_cancellation_static_fields?: {
+    [key: string]: StaticField;
+  };
+  export_cancellation_static_fields?: {
+    [key: string]: StaticField;
+  };
+  permanent_cancellation_static_fields?: {
+    [key: string]: StaticField;
+  };
   instructions: string;
 }
 
@@ -61,8 +70,7 @@ interface FieldPositionsConfig {
 async function loadFieldPositions(): Promise<{
   positions: FieldPositions;
   rotation: number;
-  transferStaticFields: { [key: string]: StaticField };
-  newRegistrationStaticFields: { [key: string]: StaticField };
+  staticFieldsByType: { [key: string]: { [key: string]: StaticField } };
 }> {
   const configPath = path.join(process.cwd(), 'config', 'field-positions.json');
   
@@ -74,16 +82,20 @@ async function loadFieldPositions(): Promise<{
     return {
       positions: config.fields,
       rotation: config.page_info.rotation || 0,
-      transferStaticFields: config.transfer_static_fields || {},
-      newRegistrationStaticFields: config.new_registration_static_fields || {},
+      staticFieldsByType: {
+        transfer: config.transfer_static_fields || {},
+        new_registration: config.new_registration_static_fields || {},
+        temporary_cancellation: config.temporary_cancellation_static_fields || {},
+        export_cancellation: config.export_cancellation_static_fields || {},
+        permanent_cancellation: config.permanent_cancellation_static_fields || {},
+      },
     };
   } catch (error) {
     console.warn('座標設定ファイルの読み込みに失敗しました。デフォルト値を使用します。');
     return {
       positions: getDefaultFieldPositions(),
       rotation: 90,
-      transferStaticFields: {},
-      newRegistrationStaticFields: {},
+      staticFieldsByType: {},
     };
   }
 }
@@ -202,7 +214,7 @@ export async function fillTemplate(
   }
   const firstPage = pages[0];
   
-  const { positions, rotation, transferStaticFields, newRegistrationStaticFields } = await loadFieldPositions();
+  const { positions, rotation, staticFieldsByType } = await loadFieldPositions();
   
   // 今日の日付を取得（令和年）
   const today = new Date();
@@ -211,7 +223,7 @@ export async function fillTemplate(
   const day = today.getDate();
   
   // 申請種類に応じた固定フィールドを印字
-  const staticFields = applicationType === 'transfer' ? transferStaticFields : newRegistrationStaticFields;
+  const staticFields = staticFieldsByType[applicationType] || {};
   for (const [fieldName, field] of Object.entries(staticFields)) {
     const fontSize = field.fontSize || 12;
     const spacing = field.spacing;

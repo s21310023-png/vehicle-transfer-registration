@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 
 // 申請種類の定義
-type ApplicationType = 'transfer' | 'new_registration' | null;
+type ApplicationType = 'transfer' | 'new_registration' | 'temporary_cancellation' | 'export_cancellation' | 'permanent_cancellation' | null;
 
 // 処理ステップの定義
 type ProcessStep = 'select' | 'upload' | 'edit' | 'complete';
@@ -24,6 +24,7 @@ interface TransferData {
 function App() {
   const [applicationType, setApplicationType] = useState<ApplicationType>(null);
   const [step, setStep] = useState<ProcessStep>('select');
+  const [showCancellationMenu, setShowCancellationMenu] = useState(false);
   const [shakenFile, setShakenFile] = useState<File | null>(null);
   const [inkanFile, setInkanFile] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
@@ -225,11 +226,41 @@ function App() {
                 <span className="button-desc">準備中</span>
               </button>
               
-              <button className="application-button coming-soon" disabled>
-                <span className="button-icon">🗑️</span>
-                <span className="button-text">抹消登録</span>
-                <span className="button-desc">準備中</span>
-              </button>
+              <div className="cancellation-menu-container">
+                <button 
+                  className="application-button cancellation"
+                  onClick={() => setShowCancellationMenu(!showCancellationMenu)}
+                >
+                  <span className="button-icon">🗑️</span>
+                  <span className="button-text">抹消登録</span>
+                  <span className="button-desc">一時・輸出・永久抹消</span>
+                </button>
+                {showCancellationMenu && (
+                  <div className="cancellation-submenu">
+                    <button
+                      className="submenu-button"
+                      onClick={() => { setApplicationType('temporary_cancellation'); setStep('upload'); setShowCancellationMenu(false); }}
+                    >
+                      <span className="submenu-icon">⏸️</span>
+                      <span className="submenu-text">一時抹消登録</span>
+                    </button>
+                    <button
+                      className="submenu-button"
+                      onClick={() => { setApplicationType('export_cancellation'); setStep('upload'); setShowCancellationMenu(false); }}
+                    >
+                      <span className="submenu-icon">🚢</span>
+                      <span className="submenu-text">輸出抹消仮登録</span>
+                    </button>
+                    <button
+                      className="submenu-button"
+                      onClick={() => { setApplicationType('permanent_cancellation'); setStep('upload'); setShowCancellationMenu(false); }}
+                    >
+                      <span className="submenu-icon">❌</span>
+                      <span className="submenu-text">永久抹消登録</span>
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         )}
@@ -240,7 +271,11 @@ function App() {
             <div className="selected-type">
               <span className="selected-label">選択中の申請:</span>
               <span className="selected-value">
-                {applicationType === 'transfer' ? '🔄 移転登録' : '✨ 新規登録'}
+                {applicationType === 'transfer' && '🔄 移転登録'}
+                {applicationType === 'new_registration' && '✨ 新規登録'}
+                {applicationType === 'temporary_cancellation' && '⏸️ 一時抹消登録'}
+                {applicationType === 'export_cancellation' && '🚢 輸出抹消仮登録'}
+                {applicationType === 'permanent_cancellation' && '❌ 永久抹消登録'}
               </span>
               <button className="change-type-button" onClick={handleReset}>
                 変更

@@ -182,5 +182,32 @@
       "label": "申請日（日）"
     }
   },
+  "temporary_cancellation_static_fields": {
+    "checkmark": {
+      "x": 600,
+      "y": 70,
+      "text": "✓",
+      "fontSize": 12,
+      "label": "レ点（一時抹消登録）"
+    }
+  },
+  "export_cancellation_static_fields": {
+    "checkmark": {
+      "x": 40,
+      "y": 150,
+      "text": "✓",
+      "fontSize": 12,
+      "label": "レ点（輸出抹消仮登録）"
+    }
+  },
+  "permanent_cancellation_static_fields": {
+    "checkmark": {
+      "x": 40,
+      "y": 70,
+      "text": "✓",
+      "fontSize": 12,
+      "label": "レ点（永久抹消登録）"
+    }
+  },
   "instructions": "座標を調整するには、このファイルのx, y値を変更してください。PDFの座標は左下が原点(0,0)、テキストは90度回転で縦書きです。"
 }
