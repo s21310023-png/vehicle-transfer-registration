@@ -41,7 +41,16 @@ async function ensureDirectories() {
 }
 
 // 申請種類の型定義
-type ApplicationType = 'transfer' | 'new_registration';
+type ApplicationType = 'transfer' | 'new_registration' | 'temporary_cancellation' | 'export_cancellation' | 'permanent_cancellation';
+
+// 申請種類に応じたテンプレートを取得
+function getTemplatePath(applicationType: ApplicationType): string {
+  const cancellationTypes = ['temporary_cancellation', 'export_cancellation', 'permanent_cancellation'];
+  if (cancellationTypes.includes(applicationType)) {
+    return path.join(process.cwd(), 'templates', 'cancellation_template.pdf');
+  }
+  return path.join(process.cwd(), 'templates', 'transfer_template.pdf');
+}
 
 // APIエンドポイント: PDF処理
 app.post('/api/process', upload.fields([
@@ -89,8 +98,8 @@ app.post('/api/process', upload.fields([
 
     // 4. PDFテンプレートに印字
     console.log('PDF生成中...');
-    const templatePath = path.join(process.cwd(), 'templates', 'transfer_template.pdf');
-    const outputFileName = `transfer_${Date.now()}.pdf`;
+    const templatePath = getTemplatePath(applicationType);
+    const outputFileName = `${applicationType}_${Date.now()}.pdf`;
     const outputPath = path.join(process.cwd(), 'output', outputFileName);
     
     await fillTemplate(templatePath, integratedData, outputPath, applicationType);
@@ -192,11 +201,12 @@ app.post('/api/generate-pdf', async (req, res) => {
     await ensureDirectories();
 
     // PDFテンプレートに印字
-    const templatePath = path.join(process.cwd(), 'templates', 'transfer_template.pdf');
-    const outputFileName = `transfer_${Date.now()}.pdf`;
+    const appType = applicationType || 'transfer';
+    const templatePath = getTemplatePath(appType);
+    const outputFileName = `${appType}_${Date.now()}.pdf`;
     const outputPath = path.join(process.cwd(), 'output', outputFileName);
     
-    await fillTemplate(templatePath, transferData, outputPath, applicationType || 'transfer');
+    await fillTemplate(templatePath, transferData, outputPath, appType);
 
     // レスポンス
     res.json({
